@@ -25,6 +25,18 @@ android {
     dataBinding {
         enabled = true
     }
+    defaultConfig {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(rootProject.projectDir.path + "/twitter4j.properties"))
+        buildConfigField(
+                "String",
+                "CONSUMER_KEY",
+                "\"" + properties.getProperty("oauth.consumerKey") + "\"")
+        buildConfigField(
+                "String",
+                "CONSUMER_SECRET",
+                "\"" + properties.getProperty("oauth.consumerSecret") + "\"")
+    }
 }
 
 dependencies {
@@ -37,4 +49,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     kapt 'com.android.databinding:compiler:2.3.0'
+
+    compile 'org.twitter4j:twitter4j-core:4.0.6'
 }
