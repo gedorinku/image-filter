@@ -8,18 +8,25 @@
         </variable>
     </data>
     <LinearLayout
-        android:id="@+id/lists_linear_layout"
+        android:id="@+id/lists_linear_layout_a"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{util.sentence}"/>
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@{util.picture}"
             android:id="@+id/imageView" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lists_linear_layout_b"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="@{util.sentence}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" />
     </LinearLayout>
 </layout>

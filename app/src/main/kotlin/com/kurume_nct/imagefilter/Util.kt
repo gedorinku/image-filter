@@ -16,20 +16,19 @@ class Util {
     private var sentence : String
 
     constructor(picture: ImageView, sentence : String){
-        this.picture = picture;
-        this.sentence = sentence;
+        this.picture = picture
+        this.sentence = sentence
     }
 
     fun getPicture() : ImageView = this.picture
 
     fun setPicture(setPicture : ImageView) : Unit{
-        this.picture = setPicture;
-
+        this.picture = setPicture
     }
 
     fun getSentence() : String = this.sentence
 
     fun setSentence(setSentence : String) : Unit{
-        this.sentence = setSentence;
+        this.sentence = setSentence
     }
 }
