@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="lists"
-            type="com.kurume_nct.imagefilter.ListUtil">
+            name="util"
+            type="com.kurume_nct.imagefilter.Util">
         </variable>
     </data>
     <LinearLayout
@@ -12,10 +12,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{util.sentence}"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@{lists.picture}"
+            android:background="@{util.picture}"
             android:id="@+id/imageView" />
     </LinearLayout>
 </layout>

@@ -1,7 +1,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <import type="com.kurume_nct.imagefilter.ListUtil"></import>
+        <import type="com.kurume_nct.imagefilter.Util"></import>
     </data>
         <RelativeLayout
             android:id="@+id/recycler_view"
