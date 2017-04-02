@@ -5,11 +5,8 @@
     </data>
         <RelativeLayout
             android:id="@+id/recycler_view"
-            android:layout_margin="@{}"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <include layout="@layout/list_lists" android:id="@+id/lists_linear_layout"/>
-
         </RelativeLayout>
 </layout>
