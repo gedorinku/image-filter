@@ -3,7 +3,6 @@ package com.kurume_nct.imagefilter.twitter
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.kurume_nct.imagefilter.BuildConfig
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,15 +69,22 @@ object TwitterAuthorizer {
         }, onError)
     }
 
-    fun loadAccessToken(context: Context): AccessToken? {
+    fun tryLoadAccessToken(context: Context, callback: (isSuccess: Boolean) -> Unit) {
         val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
         val token = preferences.getString(KEY_TOKEN, "")
         val tokenSecret = preferences.getString(KEY_TOKEN_SECRET, "")
         if (token.isEmpty() || tokenSecret.isEmpty()) {
-            return null
+            callback(false)
         }
-        return AccessToken(token, tokenSecret)
-    }
+        twitter.oAuthAccessToken = AccessToken(token, tokenSecret)
 
-    fun isStoredAccessToken(context: Context): Boolean = loadAccessToken(context) != null
+        Single.fromCallable {
+            twitter.verifyCredentials()
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
+            callback(true)
+        }, {
+            it.printStackTrace()
+            callback(false)
+        })
+    }
 }
