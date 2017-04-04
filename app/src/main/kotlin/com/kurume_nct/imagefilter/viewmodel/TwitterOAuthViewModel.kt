@@ -10,7 +10,7 @@ import com.kurume_nct.imagefilter.twitter.TwitterAuthorizer
  */
 class TwitterOAuthViewModel(
         private val callbackUri: String,
-        private val callback: Callback) {
+        private val callback: ICallback) {
 
     fun startAuthorize(view: View) =
             TwitterAuthorizer.startAuthorizing(
@@ -32,7 +32,7 @@ class TwitterOAuthViewModel(
                 callback::onErrorOAuth)
     }
 
-    interface Callback {
+    interface ICallback {
 
         fun openUri(intent: Intent)
 

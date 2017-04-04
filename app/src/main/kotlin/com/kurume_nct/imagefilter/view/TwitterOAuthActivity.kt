@@ -15,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class TwitterOAuthActivity : AppCompatActivity(), TwitterOAuthViewModel.Callback {
+class TwitterOAuthActivity : AppCompatActivity(), TwitterOAuthViewModel.ICallback {
 
     private lateinit var viewModel: TwitterOAuthViewModel
     private lateinit var binding: ActivityTwitterOauthBinding
