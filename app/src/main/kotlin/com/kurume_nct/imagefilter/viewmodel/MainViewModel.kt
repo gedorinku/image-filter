@@ -8,14 +8,17 @@ import com.kurume_nct.imagefilter.twitter.TwitterAuthorizer
  */
 class MainViewModel(private val callback: Callback) {
 
-    fun onCreate(context: Context) {
+    fun onResume(context: Context) {
         TwitterAuthorizer.tryLoadAccessToken(context, {
             if (!it) callback.startOAuthActivity()
+            else callback.openTimeLine()
         })
     }
 
     interface Callback {
 
         fun startOAuthActivity()
+
+        fun openTimeLine()
     }
 }

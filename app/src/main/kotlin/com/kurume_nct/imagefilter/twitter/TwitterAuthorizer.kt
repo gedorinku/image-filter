@@ -28,9 +28,12 @@ object TwitterAuthorizer {
     private var requestToken: RequestToken? = null
 
     init {
+        //OAuthAccessTokenとOAuthAccessTokenSecretにnullを入れていかないと一度認証したことがある場合怒られる
         val config = ConfigurationBuilder()
                 .setOAuthConsumerKey(BuildConfig.CONSUMER_KEY)
                 .setOAuthConsumerSecret(BuildConfig.CONSUMER_SECRET)
+                .setOAuthAccessToken(null)
+                .setOAuthAccessTokenSecret(null)
                 .build()
         val factory = TwitterFactory(config)
         twitter = factory.instance
@@ -40,6 +43,7 @@ object TwitterAuthorizer {
                          openUri: (Intent) -> Unit,
                          onError: (Throwable) -> Unit) {
         Single.fromCallable {
+            twitter.oAuthAccessToken = null
             requestToken = twitter.getOAuthRequestToken(callbackUri)
             requestToken!!.authorizationURL
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
