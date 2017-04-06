@@ -11,10 +11,10 @@ import android.widget.TextView
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var textView: TextView
-    var imageView : ImageView
+    //var imageView : ImageView
 
     init {
         textView = itemView.findViewById(R.id.text) as TextView
-        imageView = itemView.findViewById(R.id.imageView) as ImageView
+    //    imageView = itemView.findViewById(R.id.imageView) as ImageView
     }
 }
