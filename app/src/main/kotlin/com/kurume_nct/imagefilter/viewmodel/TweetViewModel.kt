@@ -9,12 +9,12 @@ class TweetViewModel(status: Status) {
 
     val name: String = status.user.name
 
-    val screenName: String = status.user.screenName
+    val screenName: String = "@${status.user.screenName}"
 
     val text: String = status.text
 
+    val createdAt: String = status.createdAt.toString()
 
-    interface ICallback {
 
-    }
+    interface ICallback
 }

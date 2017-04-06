@@ -7,8 +7,8 @@
     android:name="com.kurume_nct.imagefilter.view.TweetFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.kurume_nct.imagefilter.view.TweetsFragment"
     tools:listitem="@layout/fragment_tweet"/>
