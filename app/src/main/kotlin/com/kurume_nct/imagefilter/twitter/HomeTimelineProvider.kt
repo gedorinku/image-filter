@@ -2,6 +2,7 @@ package com.kurume_nct.imagefilter.twitter
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import twitter4j.Paging
 import twitter4j.ResponseList
 import twitter4j.Status
 
@@ -10,9 +11,9 @@ import twitter4j.Status
  */
 class HomeTimelineProvider : IStatusProvider {
 
-    override fun requestStatuses(): Single<ResponseList<Status>> =
+    override fun requestStatuses(paging: Paging): Single<ResponseList<Status>> =
             Single.fromCallable {
                 val twitter = TwitterAuthorizer.twitter
-                twitter.homeTimeline
+                twitter.getHomeTimeline(paging)
             }.subscribeOn(Schedulers.io())
 }

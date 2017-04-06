@@ -2,6 +2,7 @@ package com.kurume_nct.imagefilter.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,9 +22,17 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_tweet_list, container, false)
 
-        if (view is RecyclerView) {
-            val context = view.getContext()
-            val recyclerView = view
+        if (view is SwipeRefreshLayout) {
+            view.setOnRefreshListener {
+                viewModel.onRefresh {
+                    view.isRefreshing = false
+                }
+            }
+        }
+
+        val recyclerView = view.findViewById(R.id.list)
+        if (recyclerView is RecyclerView) {
+            val context = recyclerView.context
             recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = TweetRecyclerViewAdapter(viewModel.tweets)
             recyclerView.adapter = adapter

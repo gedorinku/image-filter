@@ -10,9 +10,9 @@ import twitter4j.Status
  * Created by gedorinku on 2017/04/06.
  */
 class UserListTimelineProvider(val listId: Long) : IStatusProvider {
-    override fun requestStatuses(): Single<ResponseList<Status>> =
+    override fun requestStatuses(paging: Paging): Single<ResponseList<Status>> =
             Single.fromCallable {
                 val twitter = TwitterAuthorizer.twitter
-                twitter.getUserListStatuses(listId, Paging())
+                twitter.getUserListStatuses(listId, paging)
             }.subscribeOn(Schedulers.io())
 }
