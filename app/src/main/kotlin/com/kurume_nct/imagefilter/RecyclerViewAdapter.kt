@@ -34,7 +34,7 @@ class RecyclerViewAdapter(list: ArrayList<String>) : RecyclerView.Adapter<Recycl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val v : View = LayoutInflater.from(parent.context).inflate(R.layout.list_lists, parent,false)
+        val v : View = LayoutInflater.from(parent.context).inflate(R.layout.fragment_list_list_framgnet, parent,false)
         return ItemViewHolder(v)
     }
 }

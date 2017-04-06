@@ -17,10 +17,11 @@ class ListListFragment : Fragment(){
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        return inflater.inflate(R.layout.fragment_list_list_framgnet, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_list_list_framgnet, container, false)
 
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -31,7 +32,8 @@ class ListListFragment : Fragment(){
         array.add("B")
         array.add("C")
 
-        adapter = RecyclerViewAdapter(array);
+        recyclerView = RecyclerView(context)
+        adapter = RecyclerViewAdapter(array)
         recyclerView.adapter = adapter
 
     }

@@ -1,12 +1,15 @@
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.kurume_nct.imagefilter.Util"></import>
     </data>
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/list_lists"
+            android:background="@android:color/darker_gray" />
 </layout>
