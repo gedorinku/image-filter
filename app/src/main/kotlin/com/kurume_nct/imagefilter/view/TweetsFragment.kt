@@ -22,21 +22,23 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_tweet_list, container, false)
 
-        if (view is SwipeRefreshLayout) {
-            view.setOnRefreshListener {
-                viewModel.onRefresh {
-                    view.isRefreshing = false
-                }
-            }
-        }
-
         val recyclerView = view.findViewById(R.id.list)
         if (recyclerView is RecyclerView) {
             val context = recyclerView.context
             recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = TweetRecyclerViewAdapter(viewModel.tweets)
             recyclerView.adapter = adapter
+
+            if (view is SwipeRefreshLayout) {
+                view.setOnRefreshListener {
+                    viewModel.onRefresh {
+                        view.isRefreshing = false
+                        (recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
+                    }
+                }
+            }
         }
+
         viewModel.onCreateView(arguments)
 
         return view
