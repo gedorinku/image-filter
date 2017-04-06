@@ -4,15 +4,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.Toast
 import com.kurume_nct.imagefilter.R
 import com.kurume_nct.imagefilter.databinding.ActivityTwitterOauthBinding
-import com.kurume_nct.imagefilter.twitter.TwitterAuthorizer
 import com.kurume_nct.imagefilter.viewmodel.TwitterOAuthViewModel
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
 class TwitterOAuthActivity : AppCompatActivity(), TwitterOAuthViewModel.ICallback {
@@ -38,13 +33,7 @@ class TwitterOAuthActivity : AppCompatActivity(), TwitterOAuthViewModel.ICallbac
     override fun openUri(intent: Intent) = startActivity(intent)
 
     override fun onSuccessOAuth() {
-        val twitter = TwitterAuthorizer.twitter
-        Single.fromCallable {
-            twitter.updateStatus("OAuthできたっぽい")
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe({}, Throwable::printStackTrace)
         showToast("認証成功")
-
         finish()
     }
 
