@@ -1,9 +1,8 @@
 package com.kurume_nct.imagefilter.viewmodel
 
-import com.kurume_nct.imagefilter.twitter.TwitterAuthorizer
-import io.reactivex.Single
+import android.os.Bundle
+import com.kurume_nct.imagefilter.twitter.IStatusProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import twitter4j.Status
 
 /**
@@ -13,18 +12,18 @@ class TweetsViewModel(private val callback: ICallback) {
 
     val tweets: MutableList<Status> = mutableListOf()
 
-    fun onCreateView() {
-        val twitter = TwitterAuthorizer.twitter
-
-        Single.fromCallable {
-            twitter.timelines().homeTimeline
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
-            it ->
-            it.reversed().forEach {
-                tweets.add(0, it)
-                callback.onItemInserted(0)
-            }
-        })
+    fun onCreateView(arguments: Bundle) {
+        IStatusProvider
+                .create(arguments)
+                .requestStatuses()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    it ->
+                    it.reversed().forEach {
+                        tweets.add(0, it)
+                        callback.onItemInserted(0)
+                    }
+                })
     }
 
     interface ICallback {

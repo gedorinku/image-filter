@@ -1,6 +1,5 @@
 package com.kurume_nct.imagefilter.view
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -9,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kurume_nct.imagefilter.R
+import com.kurume_nct.imagefilter.twitter.IStatusProvider
 import com.kurume_nct.imagefilter.viewmodel.TweetsViewModel
 
 class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
@@ -28,7 +28,7 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
             adapter = TweetRecyclerViewAdapter(viewModel.tweets)
             recyclerView.adapter = adapter
         }
-        viewModel.onCreateView()
+        viewModel.onCreateView(arguments)
 
         return view
     }
@@ -39,9 +39,10 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
 
     companion object {
 
-        fun newInstance(): TweetsFragment {
+        fun newInstance(statusProviderType: IStatusProvider.ProviderType): TweetsFragment {
             val fragment = TweetsFragment()
             val args = Bundle()
+            statusProviderType.writeToBundle(args)
             fragment.arguments = args
             return fragment
         }

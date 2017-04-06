@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.kurume_nct.imagefilter.R
+import com.kurume_nct.imagefilter.twitter.IStatusProvider
 import com.kurume_nct.imagefilter.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity(),
-        MainViewModel.Callback {
+        MainViewModel.ICallback {
 
     private val viewModel = MainViewModel(this)
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity(),
         startActivity(intent)
     }
 
-    override fun openTimeLine() {
-        replaceFragment(TweetsFragment.newInstance())
+    override fun openTimeLine(providerType: IStatusProvider.ProviderType) {
+        replaceFragment(TweetsFragment.newInstance(providerType))
     }
 }
