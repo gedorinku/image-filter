@@ -1,34 +1,31 @@
 package com.kurume_nct.imagefilter
 
+import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.graphics.Picture
-import android.icu.lang.UCharacter
 import android.widget.ImageView
 
 /**
  * Created by hanah on 4/2/2017.
  */
-class Util {
+
+class Util : BaseObservable() {
+
+    lateinit private var picture: ImageView
+    lateinit private var sentence : String
 
     @Bindable
-    private var picture: ImageView
+    fun getPicture() = this.picture
+
     @Bindable
-    private var sentence : String
+    fun getSentence() = this.sentence
 
-    constructor(picture: ImageView, sentence : String){
-        this.picture = picture
-        this.sentence = sentence
-    }
-
-    fun getPicture() : ImageView = this.picture
-
-    fun setPicture(setPicture : ImageView) : Unit{
+    fun setSentence(setPicture : ImageView){
         this.picture = setPicture
+        notifyPropertyChanged(BR.picture)
     }
-
-    fun getSentence() : String = this.sentence
 
     fun setSentence(setSentence : String) : Unit{
         this.sentence = setSentence
+        notifyPropertyChanged(BR.sentence)
     }
 }
