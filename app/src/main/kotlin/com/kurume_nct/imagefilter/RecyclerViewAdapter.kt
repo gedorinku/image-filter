@@ -3,7 +3,6 @@ package com.kurume_nct.imagefilter
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import java.util.*
 
 /**
 * Created by hanah on 4/2/2017.
+ * うみゃー
 */
 
 class RecyclerViewAdapter(list: ArrayList<String>) : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>() {
@@ -25,8 +25,10 @@ class RecyclerViewAdapter(list: ArrayList<String>) : RecyclerView.Adapter<Recycl
     override fun getItemCount(): Int = mUserList.size
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val util : String = mUserList[position]
         //データせっと
-        holder.getBinding().setVariable(BR.util,mUserList[position])
+        holder.getBinding().setVariable(BR.util,util)
+        holder.getBinding().executePendingBindings()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

@@ -3,7 +3,6 @@ package com.kurume_nct.imagefilter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +32,6 @@ class ListListFragment : Fragment(){
         array.add("B")
         array.add("C")
 
-        Log.d("List","add")
         recyclerView = RecyclerView(context)
         adapter = RecyclerViewAdapter(array)
         recyclerView.adapter = adapter
