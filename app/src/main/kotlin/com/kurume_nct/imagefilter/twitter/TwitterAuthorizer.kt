@@ -65,7 +65,7 @@ object TwitterAuthorizer {
             val editor = preferences.edit()
             editor.putString(KEY_TOKEN, accessToken.token)
             editor.putString(KEY_TOKEN_SECRET, accessToken.tokenSecret)
-            editor.commit()
+            editor.apply()
             accessToken
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
             twitter.oAuthAccessToken = it
