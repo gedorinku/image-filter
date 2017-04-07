@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun openTimeLine(providerType: IStatusProvider.ProviderType) {
-        replaceFragment(TweetsFragment.newInstance(providerType))
+        //replaceFragment(TweetsFragment.newInstance(providerType))
+        replaceFragment(ListListFragment.newInstance())
     }
 }

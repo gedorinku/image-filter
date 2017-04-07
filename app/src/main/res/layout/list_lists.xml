@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="util"
-            type="com.kurume_nct.imagefilter.Util">
+            name="userListModelView"
+            type="com.kurume_nct.imagefilter.viewmodel.UserListModelView">
         </variable>
     </data>
     <RelativeLayout
@@ -14,6 +13,6 @@
             android:id="@+id/list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{util.sentence}" />
+            android:text="@{userListModelView.sentence}" />
     </RelativeLayout>
 </layout>
