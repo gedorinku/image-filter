@@ -26,7 +26,7 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
         if (recyclerView is RecyclerView) {
             val context = recyclerView.context
             recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = TweetRecyclerViewAdapter(viewModel.tweets)
+            adapter = TweetRecyclerViewAdapter(viewModel.tweetList)
             recyclerView.adapter = adapter
 
             if (view is SwipeRefreshLayout) {

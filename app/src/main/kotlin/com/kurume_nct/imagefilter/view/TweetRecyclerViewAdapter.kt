@@ -12,7 +12,7 @@ import com.kurume_nct.imagefilter.viewmodel.TweetViewModel
 import twitter4j.Status
 
 class TweetRecyclerViewAdapter(
-        private val tweets: MutableList<Status>)
+        private val tweets: List<Status>)
     : RecyclerView.Adapter<TweetRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

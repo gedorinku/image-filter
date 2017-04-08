@@ -11,7 +11,10 @@ import twitter4j.Status
  */
 class TweetsViewModel(private val callback: ICallback) {
 
-    val tweets: MutableList<Status> = mutableListOf()
+    private val tweets: MutableList<Status> = mutableListOf()
+
+    val tweetList: List<Status>
+        get() = tweets
 
     private lateinit var statusProvider: IStatusProvider
 
