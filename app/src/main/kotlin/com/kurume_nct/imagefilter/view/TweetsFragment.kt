@@ -44,8 +44,8 @@ class TweetsFragment : Fragment(), TweetsViewModel.ICallback {
         return view
     }
 
-    override fun onItemInserted(index: Int) {
-        adapter.notifyItemInserted(index)
+    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeInserted(positionStart, itemCount)
     }
 
     companion object {

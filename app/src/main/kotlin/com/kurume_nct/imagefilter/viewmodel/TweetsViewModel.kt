@@ -23,13 +23,10 @@ class TweetsViewModel(private val callback: ICallback) {
         statusProvider
                 .requestStatuses(Paging())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribe {
                     it ->
-                    it.reversed().forEach {
-                        tweets.add(0, it)
-                        callback.onItemInserted(0)
-                    }
-                })
+                    addTweets(it)
+                }
     }
 
     fun onRefresh(onRefreshed: () -> Unit) {
@@ -43,16 +40,19 @@ class TweetsViewModel(private val callback: ICallback) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     it ->
-                    it.reversed().forEach {
-                        tweets.add(0, it)
-                        callback.onItemInserted(0)
-                    }
+                    addTweets(it)
                     onRefreshed()
                 })
     }
 
+    private fun addTweets(items: List<Status>) {
+        if (items.isEmpty()) return
+        tweets.addAll(0, items)
+        callback.onItemRangeInserted(0, items.size)
+    }
+
     interface ICallback {
 
-        fun onItemInserted(index: Int)
+        fun onItemRangeInserted(positionStart: Int, itemCount: Int)
     }
 }
