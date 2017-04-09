@@ -27,7 +27,7 @@ class MainViewModel(private val callback: ICallback) {
                             callback.openTimeLine(
                                     IStatusProvider
                                             .ProviderType
-                                            .createUserListTimelineType(it[0].id)
+                                            .HOME_TIMELINE_TYPE
                             )
                         })
             }
