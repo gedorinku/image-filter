@@ -46,7 +46,7 @@ class TweetImagesViewModel(private val callback: ICallback) {
 
     private fun addImages(items: List<Status>) {
         if (items.isEmpty()) return
-        lastStatus = items.last()
+        lastStatus = items.first()
         val fetchedImages = items
                 .flatMap { it.mediaEntities.toList() }
                 .filter { it.type == "photo" }
