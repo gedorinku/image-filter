@@ -21,7 +21,9 @@ class TweetImagesRecyclerViewAdapter(private val images: List<MediaEntity>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.setVariable(BR.viewModel, TweetImageViewModel(images[position]))
+        val viewModel = TweetImageViewModel(images[position])
+        holder.binding.setVariable(BR.viewModel, viewModel)
+        viewModel.onBindView(holder.view)
     }
 
     override fun getItemCount(): Int = images.size
